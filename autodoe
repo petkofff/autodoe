@@ -1,0 +1,35 @@
+#!/bin/bash
+
+sha=0
+previous_sha=0
+
+update_sha() {
+    sha=`ls -lR . | sha1sum`
+}
+
+on_filesystem_changed () {
+    echo "--> autodoe: Files changed, Building..."
+    sh .autodoe.sh
+    previous_sha=$sha
+}
+
+compare () {
+    if [[ $sha != $previous_sha ]] ; then on_filesystem_changed; fi
+}
+
+run () {
+    while true; do
+        
+        update_sha
+        compare
+
+        read -s -t 1 && (
+            echo "--> autodoe: Forced Update..."
+            build
+        )
+
+    done
+}
+
+echo "--> autodoe: Monitoring filesystem... (Press enter to force a build/update)"
+run
