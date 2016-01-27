@@ -7,29 +7,60 @@ update_sha() {
     sha=`ls -lR . | sha1sum`
 }
 
-on_filesystem_changed () {
-    echo "--> autodoe: Files changed, Building..."
-    sh .autodoe.sh
+on_filesystem_changed() {
+    echo "autodoe: Files changed, Building..."
+    sh .autodoe.sh &
     previous_sha=$sha
 }
 
-compare () {
+compare() {
     if [[ $sha != $previous_sha ]] ; then on_filesystem_changed; fi
 }
 
-run () {
+run() {
     while true; do
         
         update_sha
         compare
 
         read -s -t 1 && (
-            echo "--> autodoe: Forced Update..."
-            build
+            echo "autodoe: Forced Update..."
+            sh .autodoe.sh
         )
 
     done
 }
 
-echo "--> autodoe: Monitoring filesystem... (Press enter to force a build/update)"
-run
+help() {
+    printf "uasge: autodoe [argument]\n\n"
+    echo "init      Initializes new .autodoe.sh in the working directory"
+    echo "scr       Prints the .autodoe.sh script in the working directory"
+    echo "Running autodoe with no argument will trigger monitoring the working directory."
+}
+
+autodoe() {
+    local scr
+
+    if [[ "$1" = "init" ]] ; then
+        echo  "autodoe: Input your update script: "
+        read -e scr
+        echo "#!/bin/sh" > .autodoe.sh
+        echo "$scr" >> .autodoe.sh
+        return 0;
+    fi
+    
+    if [[ "$1" = "scr" ]] ; then 
+        cat .autodoe.sh; 
+        return 0;
+    fi
+    
+    if [[ -z "$1" ]] ; then 
+        echo "autodoe: Monitoring filesystem... (Press enter to force a build/update)"
+        run
+        return 0;
+    fi
+    
+    help
+}
+
+autodoe $1
