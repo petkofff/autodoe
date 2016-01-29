@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+console.log('autodoe: Monitoring filesystem...');
+require('../lib/watcher').watch();

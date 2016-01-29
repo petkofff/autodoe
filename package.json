@@ -1,0 +1,24 @@
+{
+  "name": "autodoe",
+  "version": "0.0.0",
+  "description": "##Description",
+  "bin": {
+    "autodoe": "bin/autodoe"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petkofff/autodoe.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/petkofff/autodoe/issues"
+  },
+  "dependencies": {
+    "commander": "~2.9.0",
+    "fsmonitor": "~0.2.4"
+  }
+}

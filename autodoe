@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#nodejs script should do the same
+
 sha=0
 previous_sha=0
 
