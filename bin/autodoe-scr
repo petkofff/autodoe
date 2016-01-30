@@ -1,3 +1,6 @@
 #!/usr/bin/env node
 
-console.log("scr script envoked");
+require('fs').readFile(process.cwd()+'/.autodoe.sh', 'utf8', function(err, data) {
+	if (err) console.log('autodoe: error occurred while openig .autodoe.sh');
+	else console.log(data);
+});

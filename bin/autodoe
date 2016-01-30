@@ -3,7 +3,7 @@
 var program = require('commander');
 
 program
-	.version('0.0.0')
+	.version('0.0.1')
 	.usage('[command]')
 	.command('init', 'Initializes new .autodoe.sh in the working directory')
 	.command('scr', 'Prints the .autodoe.sh script in the working directory')

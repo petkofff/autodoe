@@ -1,3 +1,16 @@
 #!/usr/bin/env node
 
-console.log("init scr here")
+var fs = require('fs');
+
+var path = process.cwd();
+
+console.log('autodoe: Input your update script:');
+
+var stdin = process.openStdin();
+stdin.on('data', function(data) {
+	var scr = data.toString();
+	
+	fs.writeFileSync(path + '/.autodoe.sh', '#!/bin/sh\n' + scr);
+	
+	process.exit();
+});
