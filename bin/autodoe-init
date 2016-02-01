@@ -1,16 +1,38 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var program = require('commander');
+
+program
+	.option('-m, --multiple-lines', 'Lets you input multiple lines')
+	.parse(process.argv);
 
 var path = process.cwd();
+var wstream = fs.createWriteStream(path + '/.autodoe.sh');
 
 console.log('autodoe: Input your update script:');
 
+var firstStdin = true;
 var stdin = process.openStdin();
 stdin.on('data', function(data) {
-	var scr = data.toString();
+	var scr;
 	
-	fs.writeFileSync(path + '/.autodoe.sh', '#!/bin/sh\n' + scr);
+	data = data.toString();
 	
-	process.exit();
+	if (data === ':q\n' || data === ':quit\n') {
+		process.exit();
+	}
+	
+	if (firstStdin) {
+		firstStdin = false;
+		scr = '#!/bin/sh\n' + data;
+	} else {
+		scr = data;
+	}
+	
+	wstream.write(scr);
+	
+	if (!program.multipleLines) {
+		process.exit();
+	}
 });

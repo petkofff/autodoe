@@ -1,7 +1,7 @@
 {
   "name": "autodoe",
   "version": "0.0.1",
-  "description": "##Description",
+  "description": "A simple cli tool which monitors the directory you open it in.",
   "bin": {
     "autodoe": "bin/autodoe"
   },
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/petkofff/autodoe.git"
   },
-  "author": "",
+  "author": "Georgi Petkoff <gpetkofff@abv.bg>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/petkofff/autodoe/issues"
