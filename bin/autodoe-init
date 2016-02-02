@@ -10,7 +10,11 @@ program
 var path = process.cwd();
 var wstream = fs.createWriteStream(path + '/.autodoe.sh');
 
-console.log('autodoe: Input your update script:');
+(function() {
+	var msg = 'autodoe: Input your update script';
+	if (program.multipleLines) msg += ' (:q or :quit to exit)';
+	console.log(msg + ':');
+})();
 
 var firstStdin = true;
 var stdin = process.openStdin();

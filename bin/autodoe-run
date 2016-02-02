@@ -1,3 +1,11 @@
 #!/usr/bin/env node
 
-require('../lib/watcher').watch();
+var program = require('commander');
+
+program
+	.option('-s, --specify-script <path to script>', 'lets you specify the path to the script which will be executed on every state change of the monitoring folder')
+	.parse(process.argv);
+	
+var path = null || program.specifyScript;
+
+require('../lib/watcher').watch(path);
