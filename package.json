@@ -1,6 +1,6 @@
 {
   "name": "autodoe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple cli tool which monitors the directory you open it in.",
   "bin": {
     "autodoe": "bin/autodoe"
