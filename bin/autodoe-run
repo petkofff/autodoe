@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
 var program = require('commander');
+var expandTilde = require('expand-tilde');
 
 program
 	.option('-s, --specify-script <path to script>', 'lets you specify the path to the script which will be executed on every state change of the monitoring folder')
 	.parse(process.argv);
 	
-var path = null || program.specifyScript;
+var path = program.specifyScript;
+
+if (path) {
+	path = expandTilde(path);
+}
 
 require('../lib/watcher').watch(path);

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "commander": "~2.9.0",
+    "expand-tilde": "^1.2.0",
     "fsmonitor": "~0.2.4"
   }
 }
