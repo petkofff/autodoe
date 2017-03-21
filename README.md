@@ -1,10 +1,10 @@
-#Autodoe
+# Autodoe
 
-##Description
+## Description
 
 `autodoe` is a simple `nodejs` cli tool which monitors the directory you open it in. Whenever changes to files occur `autodoe` executes `/path/to/monitored/folder/.autodoe.sh`.
 
-##Usage
+## Usage
 
 ```
 $ autodoe --help
@@ -26,7 +26,7 @@ $ autodoe --help
 
 ```
 
-##Installation
+## Installation
 
 ```
 $ sudo npm install -g autodoe
